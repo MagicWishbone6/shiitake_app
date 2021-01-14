@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function Header(props) {
+function Header() {
     return (
         <Navbar collapseOnSelect expand="lg" bg='light' variant='light'>
 			<Navbar.Brand href='/' id='navTitle'>shiitake!</Navbar.Brand>

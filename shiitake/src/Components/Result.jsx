@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Result(props) {
+function Result() {
     return (
         <div>
-            
+            <h2>Result Component</h2>
         </div>
     );
 }

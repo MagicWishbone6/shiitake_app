@@ -1,9 +1,11 @@
 import React from 'react';
+import AppForm from './AppForm.jsx'
 
-function Home(props) {
+function Home() {
     return (
         <div>
-            
+            <h2>Home Component</h2>
+            <AppForm /> 
         </div>
     );
 }
