@@ -1,11 +1,12 @@
 import React from 'react';
 
-function Message(message) {
+function Message({message}) {
 
     return (
         <div>
-            <h2>Message Component</h2>
-            <h3>{message.name}</h3>
+            <p>Message Component</p>
+            <h4>{message.name}</h4>
+            <h4>{message.url}</h4>
         </div>
     );
 }
