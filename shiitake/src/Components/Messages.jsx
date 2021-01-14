@@ -18,7 +18,7 @@ function Messages() {
 
 return (
         <div>
-            <h2>Messages Component</h2>
+            <h3>Messages Component</h3>
             {messages.map(msg => 
                 <Message message={msg} key={msg.name}/>
             )}
