@@ -19,9 +19,14 @@ function Messages() {
 return (
         <div>
             <h3>Messages Component</h3>
+
             {messages.map(msg => 
-                <Message message={msg} key={msg.name}/>
+                <Message 
+                    message={msg} 
+                    key={msg.name}
+                />
             )}
+        
         </div>
     )        
 }
