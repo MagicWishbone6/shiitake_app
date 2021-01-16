@@ -41,6 +41,7 @@ function Messages() {
     const modMessages = () => {
         const resultMsg = () => (messages.map(msg => (
             findTextAndReplace(msg.name, curseWords[0], "duck"))))
+        
         return resultMsg
     }
 
