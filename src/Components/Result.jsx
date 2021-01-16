@@ -2,17 +2,17 @@ import React from 'react';
 import FoaasCard from 'react-foaas-card'
 
 function Result({content}) {
-    let toName = `/Bonnie`
-    const path = `${content.value}${toName}`
+    
+    const path = `${content.value}/${content.toName}`
 
-    console.log(path)
+    // console.log(path)
 
     return (
         <div>
             <h4>Your Result:</h4>
             <FoaasCard 
                 type={path}
-                from='some asshole'
+                from={content.from}
                 middleFinger={false}
                 darkMode={false}
             />

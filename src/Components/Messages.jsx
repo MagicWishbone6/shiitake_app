@@ -27,9 +27,27 @@ function Messages() {
         event.preventDefault()
     }
 
-    console.log({selection})
-    console.log({apiUrl})
-    console.log(content.value)
+    const findTextAndReplace = (data, searchTerm, replacement) => {
+        const dataMod = data.map(msgName => {
+            if (msgName.indexOf(searchTerm) >= 0) {
+                msgName.splice(msgName.indexOf(searchTerm), searchTerm.length,replacement)
+            }
+            return dataMod
+        })
+    }
+
+    const curseWords = ["fuck"]
+
+    const modMessages = () => {
+        const resultMsg = () => (messages.map(msg => (
+            findTextAndReplace(msg.name, curseWords[0], "duck"))))
+        return resultMsg
+    }
+
+    console.log(modMessages())
+    // console.log({selection})
+    // console.log({apiUrl})
+    // console.log(content.value)
 return (
         <div id="msgMenu">
             <label 
@@ -59,7 +77,10 @@ return (
                 )}
             </select>
             <Result content={{
-                value: content.value
+                value: content.value,
+                toName: 'Felicia',
+                from: 'Anonymous',
+                modMsgs: modMessages()
             }}/>
         </div>
     )        

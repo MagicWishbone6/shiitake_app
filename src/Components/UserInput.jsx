@@ -1,12 +1,16 @@
 import React from 'react';
+import Result from './Result.jsx'
+
+let nameInput = 'Felicia'
+let senderInput = 'Anonymous'
 
 function UserInput() {
     
     const handleClick = event => {
-        let nameInput = document.getElementById("nameInput").value
-        let senderInput = document.getElementById("senderInput").value
-        console.log(`The recipient is ${nameInput}`)
-        console.log(`Your name is ${senderInput}`)
+        nameInput = document.getElementById("nameInput").value
+        senderInput = document.getElementById("senderInput").value
+        Result.content.toName = nameInput
+        Result.content.from = senderInput
         event.preventDefault()
     }
 
