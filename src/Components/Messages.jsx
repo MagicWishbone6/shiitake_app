@@ -15,9 +15,9 @@ function Messages() {
     }, [])
 
     const getMessagesWithFetch = async () => {
-        const response = await fetch(apiUrl);
-        const jsonData = await response.json();
-        setMessages(jsonData);
+        const response = await fetch(apiUrl)
+        const jsonData = await response.json()
+        setMessages(jsonData)
     }
 
     const handleSelect = (event) => {
@@ -27,25 +27,6 @@ function Messages() {
         event.preventDefault()
     }
 
-    const findTextAndReplace = (data, searchTerm, replacement) => {
-        const dataMod = data.map(msgName => {
-            if (msgName.indexOf(searchTerm) >= 0) {
-                msgName.splice(msgName.indexOf(searchTerm), searchTerm.length,replacement)
-            }
-            return dataMod
-        })
-    }
-
-    const curseWords = ["fuck"]
-
-    const modMessages = () => {
-        const resultMsg = () => (messages.map(msg => (
-            findTextAndReplace(msg.name, curseWords[0], "duck"))))
-        
-        return resultMsg
-    }
-
-    console.log(modMessages())
     // console.log({selection})
     // console.log({apiUrl})
     // console.log(content.value)
@@ -81,7 +62,15 @@ return (
                 value: content.value,
                 toName: 'Felicia',
                 from: 'Anonymous',
-                modMsgs: modMessages()
+                behavior: '',
+                company: '',
+                do: '',
+                language: '',
+                noun: '',
+                reference: '',
+                something: '',
+                thing: '',
+                tool: ''
             }}/>
         </div>
     )        
