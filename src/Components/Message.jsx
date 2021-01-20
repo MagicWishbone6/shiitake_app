@@ -11,7 +11,7 @@ function Message({message}) {
             title = title.replace('fuck','duck')
             duckReplacement()
         } else {
-            
+
         }
     }
 

@@ -28,8 +28,8 @@ function Messages() {
 
     const handleSelect = (event) => {
         setStatus({value: event.target.value, url: ``})
-        setSelection({value: event.target.value, url: ``})
-        setContent({value: event.target.value, url: ``})
+        setSelection({value: event.target.value, url: Selection.url})
+        setContent({value: event.target.value, url: Selection.url})
         path()
         event.preventDefault()
     }
@@ -45,7 +45,6 @@ return (
             <select 
                 value={selection}
                 id="selectedMsg"
-                url=''
                 onChange={handleSelect}>
                     <option 
                         id="optionStatus"
