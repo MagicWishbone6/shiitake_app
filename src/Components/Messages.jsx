@@ -28,8 +28,8 @@ function Messages() {
 
     const handleSelect = (event) => {
         setStatus({value: event.target.value, url: ``})
-        setSelection({value: event.target.value, url: Selection.url})
-        setContent({value: event.target.value, url: Selection.url})
+        setSelection({value: event.target.value, url: ``})
+        setContent({value: event.target.value, url: ``})
         path()
         event.preventDefault()
     }
