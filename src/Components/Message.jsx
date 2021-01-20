@@ -1,13 +1,24 @@
 import React from 'react';
 
 function Message({message}) {
-    let title = toString(message.name)
-    if (title.indexOf('fuck') !== -1) {
-        title = () => (title.splice(title.indexOf('fuck'),4,'duck'))
+    let title = message.name
+    
+    const duckReplacement = () => {
+        if (title.indexOf('Fuck') > -1) {
+            title = title.replace(`Fuck`, `Duck`)
+            duckReplacement()
+        } else if (title.indexOf('fuck') > -1) {
+            title = title.replace('fuck','duck')
+            duckReplacement()
+        } else {
+            
+        }
     }
 
+    duckReplacement()
+
     return (
-        <option>
+        <option url={message.url}>
             {title}
         </option>
     );

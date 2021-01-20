@@ -3,9 +3,8 @@ import FoaasCard from 'react-foaas-card'
 
 function Result({content}) {
     
-    const path = `${content.value}/${content.toName}`
+    const path = `${content.url}`
 
-    // console.log(path)
 
     return (
         <div>
@@ -15,9 +14,8 @@ function Result({content}) {
                 from={content.from}
                 middleFinger={false}
                 darkMode={false}
+                url={content.url}
             />
-            {/* <h5>{result.message}</h5>
-            <h6>{result.subtitle}</h6> */}
         </div>
     );
 }

@@ -6,9 +6,15 @@ function Messages() {
     const [messages, setMessages] = useState([])
     const [selection, setSelection] = useState()
     const [status, setStatus] = useState({value: "- make selection -"})
-    const [content, setContent] = useState({value: `operations`})
+    const [content, setContent] = useState({value: ``, url: `operations`})
 
-    const apiUrl = `https://foaas.com/${content.value}`;
+    const path = () => {
+        if (content.url !== `operations`) {
+            content.url = `operations${content.url}`
+        }
+    }
+
+    const apiUrl = `https://foaas.com/${content.url}`;
 
     useEffect(() => {
         getMessagesWithFetch()
@@ -21,15 +27,15 @@ function Messages() {
     }
 
     const handleSelect = (event) => {
-        setStatus({value: event.target.value})
-        setSelection({value: event.target.value})
-        setContent({value: event.target.value})
+        setStatus({value: event.target.value, url: ``})
+        setSelection({value: event.target.value, url: ``})
+        setContent({value: event.target.value, url: ``})
+        path()
         event.preventDefault()
     }
 
-    // console.log({selection})
-    // console.log({apiUrl})
-    // console.log(content.value)
+    console.log(content.value)
+
 return (
         <div id="msgMenu">
             <label 
@@ -39,10 +45,12 @@ return (
             <select 
                 value={selection}
                 id="selectedMsg"
+                url=''
                 onChange={handleSelect}>
                     <option 
                         id="optionStatus"
-                        value={status}> 
+                        value={status}
+                        url={status.url}> 
                         {status.value}  
                     </option>
                     <option 
@@ -55,10 +63,12 @@ return (
                         message={msg} 
                         key={msg.name}
                         value={msg.name}
+                        url={msg.url}
                     />
                 )}
             </select>
             <Result content={{
+                url: content.url,
                 value: content.value,
                 toName: 'Felicia',
                 from: 'Anonymous',
