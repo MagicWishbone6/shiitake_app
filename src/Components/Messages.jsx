@@ -4,17 +4,9 @@ import Result from './Result.jsx'
 
 function Messages() {
     const [messages, setMessages] = useState([])
-    const [selection, setSelection] = useState()
-    const [status, setStatus] = useState({value: "- make selection -"})
-    const [content, setContent] = useState({value: ``, url: `operations`})
+    const [content, setContent] = useState({value: `operations`})
 
-    const path = () => {
-        if (content.url !== `operations`) {
-            content.url = `operations${content.url}`
-        }
-    }
-
-    const apiUrl = `https://foaas.com/${content.url}`;
+    let apiUrl = `https://foaas.com/operations`;
 
     useEffect(() => {
         getMessagesWithFetch()
@@ -26,15 +18,11 @@ function Messages() {
         setMessages(jsonData)
     }
 
-    const handleSelect = (event) => {
-        setStatus({value: event.target.value, url: ``})
-        setSelection({value: event.target.value, url: Selection.url})
-        setContent({value: event.target.value, url: Selection.url})
-        path()
+    const handleChange = (event) => {
+        setContent({value: (event.target.value).substr(1)})
+        Result.url = content.value
         event.preventDefault()
     }
-
-    console.log(content.value)
 
 return (
         <div id="msgMenu">
@@ -43,32 +31,19 @@ return (
                 Select the message you'd like to create:
             </label>
             <select 
-                value={selection}
                 id="selectedMsg"
-                onChange={handleSelect}>
-                    <option 
-                        id="optionStatus"
-                        value={status}
-                        url={status.url}> 
-                        {status.value}  
-                    </option>
-                    <option 
-                        id="optionsLineBreak"
-                        value=" - - - ">
-                         - - - 
-                    </option>
+                onChange={handleChange}>
                 {messages.map(msg => 
                     <Message 
                         message={msg} 
                         key={msg.name}
-                        value={msg.name}
-                        url={msg.url}
+                        value={msg.url}
+                        label={msg.name}
                     />
                 )}
             </select>
             <Result content={{
-                url: content.url,
-                value: content.value,
+                url: content.value,
                 toName: 'Felicia',
                 from: 'Anonymous',
                 behavior: '',

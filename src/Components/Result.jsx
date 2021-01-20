@@ -2,9 +2,9 @@ import React from 'react';
 import FoaasCard from 'react-foaas-card'
 
 function Result({content}) {
-    
-    const path = `${content.url}`
-
+    let path = content.url
+    path = path.replace("/:from", "")
+    path = path.replace("/:name", `/${content.toName}`)
 
     return (
         <div>
@@ -14,7 +14,7 @@ function Result({content}) {
                 from={content.from}
                 middleFinger={false}
                 darkMode={false}
-                url={content.url}
+                url={path}
             />
         </div>
     );
