@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Message from './Message.jsx'
 import Result from './Result.jsx'
+import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
 
 function Messages() {
     const [messages, setMessages] = useState([])
@@ -19,44 +21,39 @@ function Messages() {
     }
 
     const handleChange = (event) => {
-        setContent({value: (event.target.value).substr(1)})
+        setContent({
+            value: (event.target.value).substr(1),
+            toName: 'Felicia',
+            from: 'Benny'
+        })
         Result.url = content.value
+        Result.toName = content.toName
+        Result.from = content.from
         event.preventDefault()
     }
 
 return (
-        <div id="msgMenu">
-            <label 
+        <Form.Group id="msgMenu">
+            <Form.Label
                 htmlFor="selectedMsg">
-                Select the message you'd like to create:
-            </label>
-            <select 
-                id="selectedMsg"
-                onChange={handleChange}>
-                {messages.map(msg => 
-                    <Message 
-                        message={msg} 
-                        key={msg.name}
-                        value={msg.url}
-                        label={msg.name}
-                    />
-                )}
-            </select>
-            <Result content={{
-                url: content.value,
-                toName: 'Felicia',
-                from: 'Anonymous',
-                behavior: '',
-                company: '',
-                do: '',
-                language: '',
-                noun: '',
-                reference: '',
-                something: '',
-                thing: '',
-                tool: ''
-            }}/>
-        </div>
+                    Select a message here:
+            </Form.Label>
+            <Row>
+                <select
+                    column sm
+                    id="selectedMsg"
+                    onChange={handleChange}>
+                    {messages.map(msg => 
+                        <Message 
+                            message={msg} 
+                            key={msg.name}
+                            value={msg.url}
+                            label={msg.name}
+                        />
+                    )}
+                </select>
+            </Row>
+        </Form.Group>
     )        
 }
 

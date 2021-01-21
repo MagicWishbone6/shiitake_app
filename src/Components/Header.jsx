@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function Header() {
     return (
+
 		<Navbar 
 			collapseOnSelect 
 			expand="lg" 
@@ -26,7 +27,7 @@ function Header() {
 				</Nav.Link>
 			</Nav>
 		</Navbar>
-    );
+	)
 }
 
 export default Header;

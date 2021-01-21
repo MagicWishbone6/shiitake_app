@@ -10,6 +10,8 @@ function Message({message}) {
         } else if (title.indexOf('fuck') > -1) {
             title = title.replace('fuck','duck')
             duckReplacement()
+        } else if (title.length > 50){
+            title = title.slice(0,50)
         } else {
 
         }
