@@ -3,12 +3,14 @@ import Message from './Message.jsx'
 import Result from './Result.jsx'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import UserInput from './UserInput.jsx';
 
 function Messages() {
     const [messages, setMessages] = useState([])
-    const [content, setContent] = useState({value: `operations`})
+    const [content, setContent] = useState({value: `operations`,toName: `Felicia`,from: `Your Best Friend`})
 
-    let apiUrl = `https://foaas.com/operations`;
+    let apiUrl = `https://foaas.com/${content.value}`;
 
     useEffect(() => {
         getMessagesWithFetch()
@@ -24,11 +26,12 @@ function Messages() {
         setContent({
             value: (event.target.value).substr(1),
             toName: 'Felicia',
-            from: 'Benny'
+            from: 'Your Best Friend'
         })
         Result.url = content.value
         Result.toName = content.toName
         Result.from = content.from
+        apiUrl = `https://foaas.com/${content.value}`
         event.preventDefault()
     }
 
@@ -52,6 +55,28 @@ return (
                         />
                     )}
                 </select>
+            </Row>
+            <Row>
+                <Col>
+                <h5> </h5>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Result 
+                        content={{
+                            url: content.value,
+                            toName: content.toName,
+                            from: content.from
+                        }}
+                        >
+                    </Result>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    {/* <UserInput /> */}
+                </Col>
             </Row>
         </Form.Group>
     )        

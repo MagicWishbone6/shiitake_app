@@ -3,24 +3,29 @@ import Result from './Result.jsx'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Messages from './Messages.jsx'
 
 let nameInput = 'Felicia'
 let senderInput = 'Anonymous'
 
 function UserInput() {
     
-    const handleClick = event => {
-        nameInput = document.getElementById("nameInput").value
-        senderInput = document.getElementById("senderInput").value
-        Result.content.toName = nameInput
-        Result.content.from = senderInput
+    const handleChange = (event) => {
+        nameInput = event.target.value
+        senderInput = event.target.value
+        // Messages.content.toName = nameInput
+        // Messages.content.from = senderInput
+        // Result.content.toName = nameInput
+        // Result.content.from = senderInput
+        // Result.content.url = Messages.select.value
+        
         event.preventDefault()
     }
 
     return (
         <Form.Group >
             <Row>
-                <Col lg={true}>
+                <Col lg>
                     <h4>Personalize It:</h4>
                 </Col>
             </Row>
@@ -32,10 +37,11 @@ function UserInput() {
                             Type Your Recipient's Name here:
                     </Form.Label>
                     <Form.Control
-                        column lg={true}
+                        column lg
                         type="text" 
                         placeholder="Recipient's Name" 
-                        id="nameInput">
+                        id="nameInput"
+                        onChange={handleChange}>
                     </Form.Control>
             </Form.Group>
             <Form.Group 
@@ -46,20 +52,21 @@ function UserInput() {
                             Type Your Name here:
                     </Form.Label>
                     <Form.Control
-                        column lg={true}
+                        column lg
                         type="text"
                         placeholder="Your Name"
-                        id="senderInput">
+                        id="senderInput"
+                        onChange={handleChange}>
                     </Form.Control>
             </Form.Group>
-            <Form.Group 
+            {/* <Form.Group 
                 as={Row}>
                     <Form.Control
-                        column lg={true}
+                        column lg
                         type="submit"
-                        onClick={handleClick}>
+                        onSubmit={handleSubmit}>
                     </Form.Control>
-            </Form.Group>
+            </Form.Group> */}
         </Form.Group>
     )
 }
