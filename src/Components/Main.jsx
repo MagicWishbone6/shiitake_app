@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import Home from './Home'
-
-function Main(props) {
+ 
+function Main() {
     return (
-        <div className="main">
-            <Route exact path="/" component={Home} />
+        <div 
+        className="main">
+            <Route 
+            exact path="/" 
+            component={Home} />
         </div>
     );
 }

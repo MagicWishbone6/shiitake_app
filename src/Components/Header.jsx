@@ -6,26 +6,26 @@ function Header() {
     return (
 
 		<Navbar 
-			collapseOnSelect 
-			expand="lg" 
-			bg='light' 
-			variant='light'>
+		collapseOnSelect 
+		expand="lg" 
+		bg='light' 
+		variant='light'>
 			<Navbar.Brand 
-				href='/' 
-				id='navTitle'>
-				shiitake!
+			href='/' 
+			id='navTitle'>
+			shiitake!
 			</Navbar.Brand>
 			<Nav 
-				fill 
-				className='mr-auto' 
-				variant='pills'
-				defaultActiveKey='/home'>
+			fill 
+			className='mr-auto' 
+			variant='pills'
+			defaultActiveKey='/home'>
 				<Nav.Link 
-					id='homeNav' 
-					href='/home'>
-					Home
+				id='homeNav' 
+				href='/home'>
+				Home
 				</Nav.Link>
-			</Nav>
+			</Nav> 
 		</Navbar>
 	)
 }
