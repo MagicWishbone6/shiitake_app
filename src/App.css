@@ -1,0 +1,10 @@
+#navTitle {
+    font-size: 2.65rem;
+    color:lightseagreen;
+}
+
+#homeNav {
+    background-color:lightblue;
+    color: teal;
+    padding: .5rem .6rem;
+}
