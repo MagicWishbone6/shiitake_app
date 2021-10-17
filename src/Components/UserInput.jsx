@@ -20,9 +20,10 @@ export default function UserInput({message}) {
 		event.preventDefault();
 	};
 
-	const getMessageTitle = (array) => {
-		const sliceIndex = array.indexOf('/')
-		const title = message.slice(0, sliceIndex)
+	const getMessageTitle = () => {
+		const msg = message + ""
+		const sliceIndex = msg.indexOf('/')
+		const title = msg.slice(0, sliceIndex)
 		return title
 	}
 
@@ -69,7 +70,7 @@ export default function UserInput({message}) {
                     <div>
                         <FoaasCard
 							id='result'
-							type={getMessageTitle(message)}
+							type={getMessageTitle()}
 							from={input.sender}
 							middleFinger={false}
 							darkMode={false}>

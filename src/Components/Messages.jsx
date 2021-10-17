@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserInput from './UserInput.jsx';
 
-function Messages() {
+export default function Messages() {
 	const [messages, setMessages] = useState([]);
 	const [selectedMsg, setSelectedMsg] = useState({});
 
@@ -49,6 +49,4 @@ function Messages() {
 			</Row>
 		</Form.Group>
 	);
-}
-
-export default Messages;
+};
