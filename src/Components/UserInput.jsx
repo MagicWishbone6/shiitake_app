@@ -2,40 +2,34 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import FoaasCard from "react-foaas-card";
 
-function UserInput({ type }) {
+export default function UserInput({message}) {
 	const [input, setInput] = useState({
-		isSet: false,
+		recipient: "Felicia",
+		sender: "Your Best Friend"
 	});
-	let path = type;
 
-	let toNameInput = "Felicia";
-	let senderInput = "Your Best Friend";
-
-	const handleChangeName = (event) => {
-		toNameInput = event.target.value;
-
+	const handleChangeRecipient = (event) => {
+		setInput({recipient: event.target.value})
 		event.preventDefault();
 	};
 
-	const handleChangeFrom = (event) => {
-		senderInput = event.target.value;
-
+	const handleChangeSender = (event) => {
+		setInput({sender: event.target.value})
 		event.preventDefault();
 	};
 
-	const handleClick = (event) => {
-		setInput({ isSet: true });
-
-		event.preventDefault();
-	};
-
-	path = path.replace("/:from", "");
-	path = path.replace("/:name", `/${toNameInput}`);
+	const getMessageTitle = (array) => {
+		const sliceIndex = array.indexOf('/')
+		const title = message.slice(0, sliceIndex)
+		return title
+	}
 
 	return (
 		<Form.Group>
 			<Row>
+				{/* right now this first row, col, and H3 is just here for spacing */}
 				<Col>
 					<h3> </h3>
 				</Col>
@@ -54,7 +48,7 @@ function UserInput({ type }) {
 					type="text"
 					placeholder="Recipient's Name"
 					id="nameInput"
-					onChange={handleChangeName}
+					onChange={handleChangeRecipient}
 				></Form.Control>
 			</Form.Group>
 			<Form.Group as={Row}>
@@ -66,28 +60,23 @@ function UserInput({ type }) {
 					type="text"
 					placeholder="Your Name"
 					id="senderInput"
-					onChange={handleChangeFrom}
+					onChange={handleChangeSender}
 				></Form.Control>
 			</Form.Group>
-			<Form.Group as={Row}>
-				<Form.Control column type="submit" onClick={handleClick}></Form.Control>
-			</Form.Group>
-			{/* <Form.Group 
+			<Form.Group 
             as={Row}>
                 <Col>
                     <div>
                         <FoaasCard
-                        id='result'
-                        type={path}
-                        from={senderInput}
-                        middleFinger={false}
-                        darkMode={false}>
+							id='result'
+							type={getMessageTitle(message)}
+							from={input.sender}
+							middleFinger={false}
+							darkMode={false}>
                         </FoaasCard>
                     </div>
                 </Col>
-            </Form.Group> */}
+            </Form.Group>
 		</Form.Group>
 	);
-}
-
-export default UserInput;
+};

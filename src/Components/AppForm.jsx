@@ -15,11 +15,6 @@ function AppForm() {
 			</Row>
 			<Row>
 				<Col>
-					<Form></Form>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
 					<Form>
 						<Messages />
 					</Form>

@@ -3,23 +3,17 @@ import Message from "./Message.jsx";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import UserForm2 from "./UserForm2.jsx";
-// import UserInput from './UserInput.jsx';
+import UserInput from './UserInput.jsx';
 
 function Messages() {
 	const [messages, setMessages] = useState([]);
-	// const [content, setContent] = useState({
-	//     value: `operations`,
-	//     toName: `Felicia`,
-	//     from: `Your Best Friend`
-	// })
 	const [selectedMsg, setSelectedMsg] = useState({});
 
 	let apiUrl = `https://foaas.com/operations`;
 
 	useEffect(() => {
 		getMessagesWithFetch();
-	}, []);
+	}, );
 
 	const getMessagesWithFetch = async () => {
 		const response = await fetch(apiUrl);
@@ -29,7 +23,7 @@ function Messages() {
 
 	const handleChange = (event) => {
 		setSelectedMsg(event.target.value.substr(1));
-		console.log(selectedMsg);
+		console.log(selectedMsg)
 		event.preventDefault();
 	};
 
@@ -50,18 +44,7 @@ function Messages() {
 			</Row>
 			<Row>
 				<Col>
-					<h5> </h5>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<UserForm2 message={selectedMsg} />
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					{/* <UserInput 
-                        type={''}/> */}
+					<UserInput message={selectedMsg}/>
 				</Col>
 			</Row>
 		</Form.Group>
