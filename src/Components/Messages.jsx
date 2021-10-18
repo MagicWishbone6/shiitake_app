@@ -2,28 +2,23 @@ import React, { useState, useEffect } from "react";
 import Message from "./Message.jsx";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import UserInput from './UserInput.jsx';
+import UserInput from "./UserInput.jsx";
+import axios from "axios";
 
 export default function Messages() {
 	const [messages, setMessages] = useState([]);
-	const [selectedMsg, setSelectedMsg] = useState({});
+	const [selectedMsg, setSelectedMsg] = useState("");
 
 	let apiUrl = `https://foaas.com/operations`;
 
 	useEffect(() => {
-		getMessagesWithFetch();
-	}, );
-
-	const getMessagesWithFetch = async () => {
-		const response = await fetch(apiUrl);
-		const jsonData = await response.json();
-		setMessages(jsonData);
-	};
+		axios.get(apiUrl).then((response) => {
+			setMessages(response.data);
+		});
+	}, [apiUrl]);
 
 	const handleChange = (event) => {
-		setSelectedMsg(event.target.value.substr(1));
-		console.log(selectedMsg)
+		setSelectedMsg(event.target.value);
 		event.preventDefault();
 	};
 
@@ -43,10 +38,8 @@ export default function Messages() {
 				</select>
 			</Row>
 			<Row>
-				<Col>
-					<UserInput message={selectedMsg}/>
-				</Col>
+				<UserInput message={selectedMsg} />
 			</Row>
 		</Form.Group>
 	);
-};
+}

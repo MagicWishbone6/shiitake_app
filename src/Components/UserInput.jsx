@@ -1,44 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import FoaasCard from "react-foaas-card";
+import ResultCard from "./ResultCard";
+import { customizePath } from "../utilities/customizePath";
+import axios from "axios";
 
-export default function UserInput({message}) {
+export default function UserInput({ message }) {
 	const [input, setInput] = useState({
 		recipient: "Felicia",
-		sender: "Your Best Friend"
+		sender: "Your Best Friend",
+	});
+	const [customMessage, setCustomMessage] = useState({
+		message: "",
+		from: input.sender,
 	});
 
 	const handleChangeRecipient = (event) => {
-		setInput({recipient: event.target.value})
+		setInput({ recipient: event.target.value });
 		event.preventDefault();
 	};
 
 	const handleChangeSender = (event) => {
-		setInput({sender: event.target.value})
+		setInput({ sender: event.target.value });
 		event.preventDefault();
 	};
 
-	const getMessageTitle = () => {
-		const msg = message + ""
-		const sliceIndex = msg.indexOf('/')
-		const title = msg.slice(0, sliceIndex)
-		return title
-	}
+	useEffect(() => {
+		let path = `https://foaas.com${message}`;
+		path = customizePath(path, input.sender, input.recipient);
+		axios
+			.get(path, {
+				headers: {
+					Accept: "application/json",
+				},
+			})
+			.then((response) => {
+				setCustomMessage({
+					message: response.data.message,
+					from: input.sender,
+				});
+			});
+	}, [message, input.recipient, input.sender]);
 
 	return (
 		<Form.Group>
 			<Row>
-				{/* right now this first row, col, and H3 is just here for spacing */}
-				<Col>
-					<h3> </h3>
-				</Col>
-			</Row>
-			<Row>
-				<Col>
-					<h4>Personalize It:</h4>
-				</Col>
+				<h4>Personalize It:</h4>
 			</Row>
 			<Form.Group as={Row}>
 				<Form.Label column htmlFor="nameInput">
@@ -64,20 +72,11 @@ export default function UserInput({message}) {
 					onChange={handleChangeSender}
 				></Form.Control>
 			</Form.Group>
-			<Form.Group 
-            as={Row}>
-                <Col>
-                    <div>
-                        <FoaasCard
-							id='result'
-							type={getMessageTitle()}
-							from={input.sender}
-							middleFinger={false}
-							darkMode={false}>
-                        </FoaasCard>
-                    </div>
-                </Col>
-            </Form.Group>
+			<Form.Group as={Row}>
+				<div>
+					<ResultCard customMessage={customMessage} />
+				</div>
+			</Form.Group>
 		</Form.Group>
 	);
-};
+}
