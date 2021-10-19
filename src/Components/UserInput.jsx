@@ -17,12 +17,18 @@ export default function UserInput({ message }) {
 	});
 
 	const handleChangeRecipient = (event) => {
-		setInput({ recipient: event.target.value });
+		setInput({ 
+			recipient: event.target.value,
+			sender: input.sender 
+		});
 		event.preventDefault();
 	};
 
 	const handleChangeSender = (event) => {
-		setInput({ sender: event.target.value });
+		setInput({ 
+			recipient: input.recipient,
+			sender: event.target.value 
+		});
 		event.preventDefault();
 	};
 

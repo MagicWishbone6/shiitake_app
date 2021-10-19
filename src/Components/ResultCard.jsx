@@ -2,9 +2,9 @@ import Card from "react-bootstrap/Card";
 
 export default function ResultCard({ customMessage }) {
 	return (
-		<Card>
-			<Card.Body>{customMessage.message}</Card.Body>
-			<Card.Subtitle>- {customMessage.from}</Card.Subtitle>
+		<Card className="resultCard">
+			<Card.Body className="cardMessage">{customMessage.message}</Card.Body>
+			<Card.Subtitle className="cardFrom">- {customMessage.from}</Card.Subtitle>
 		</Card>
 	);
 }

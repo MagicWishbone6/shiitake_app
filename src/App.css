@@ -8,3 +8,19 @@
     color: teal;
     padding: .5rem .6rem;
 }
+
+.cardFrom {
+    color: gray;
+    font-style: italic;
+    margin-left: 20px;
+    padding-bottom: 20px;
+}
+
+.cardMessage {
+    font-size: 2rem;
+}
+
+.resultCard {
+    background-color: #eee;
+    box-shadow: 0 8px 8px -4px gray;
+}
