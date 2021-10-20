@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { Children, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import ResultCard from "./ResultCard";
 import { customizePath } from "../utilities/customizePath";
 import axios from "axios";
 import { duckReplacement } from "../utilities/duckReplacement";
+import Messages from "./Messages";
 
 export default function UserInput({ message }) {
 	const [input, setInput] = useState({
@@ -15,6 +16,13 @@ export default function UserInput({ message }) {
 		message: "",
 		from: input.sender,
 	});
+	const [selectedMsg, setSelectedMsg] = useState("");
+
+	const handleChangeMsg = (event) => {
+		setSelectedMsg(event.target.value);
+		console.log(selectedMsg)
+		event.preventDefault();
+	};
 
 	const handleChangeRecipient = (event) => {
 		setInput({ 
@@ -33,7 +41,8 @@ export default function UserInput({ message }) {
 	};
 
 	useEffect(() => {
-		let path = `https://foaas.com${message}`;
+		let path = `https://foaas.com${selectedMsg}`;
+		console.log(path)
 		path = customizePath(path, input.sender, input.recipient);
 		axios
 			.get(path, {
@@ -47,10 +56,16 @@ export default function UserInput({ message }) {
 					from: input.sender,
 				});
 			});
-	}, [message, input.recipient, input.sender]);
+	}, [message, input.recipient, input.sender, selectedMsg]);
 
 	return (
 		<Form.Group>
+			<Row>
+				<h4>Customize It:</h4>
+			</Row>
+			<Row>
+				<Messages onChange={handleChangeMsg}/>
+			</Row>
 			<Row>
 				<h4>Personalize It:</h4>
 			</Row>

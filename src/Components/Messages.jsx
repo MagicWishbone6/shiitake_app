@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import Message from "./Message.jsx";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import UserInput from "./UserInput.jsx";
 import axios from "axios";
 
-export default function Messages() {
+export default function Messages({ onChange }) {
 	const [messages, setMessages] = useState([]);
-	const [selectedMsg, setSelectedMsg] = useState("");
 
 	let apiUrl = `https://foaas.com/operations`;
 
@@ -17,16 +15,11 @@ export default function Messages() {
 		});
 	}, [apiUrl]);
 
-	const handleChange = (event) => {
-		setSelectedMsg(event.target.value);
-		event.preventDefault();
-	};
-
 	return (
 		<Form.Group id="msgMenu">
 			<Form.Label htmlFor="selectedMsg">Select a message here:</Form.Label>
 			<Row>
-				<select column id="messages" onChange={handleChange}>
+				<select column id="messages" onChange={onChange}>
 					{messages.map((msg) => (
 						<Message
 							message={msg}
@@ -36,9 +29,6 @@ export default function Messages() {
 						/>
 					))}
 				</select>
-			</Row>
-			<Row>
-				<UserInput message={selectedMsg} />
 			</Row>
 		</Form.Group>
 	);
