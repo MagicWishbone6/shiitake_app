@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import ResultCard from "./ResultCard";
 import { customizePath } from "../utilities/customizePath";
 import axios from "axios";
+import { duckReplacement } from "../utilities/duckReplacement";
 
 export default function UserInput({ message }) {
 	const [input, setInput] = useState({
@@ -42,7 +43,7 @@ export default function UserInput({ message }) {
 			})
 			.then((response) => {
 				setCustomMessage({
-					message: response.data.message,
+					message: duckReplacement(response.data.message, "duck"),
 					from: input.sender,
 				});
 			});
