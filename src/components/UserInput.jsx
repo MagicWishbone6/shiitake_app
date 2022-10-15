@@ -8,6 +8,20 @@ import { duckReplacement } from "../utilities/duckReplacement";
 import Messages from "./Messages";
 
 export default function UserInput() {
+	let messageInfo = {
+		recipient: '',
+		sender: '',
+		company: '',
+		tool: '',
+		do: '',
+		something: '',
+		noun: '',
+		reaction: '',
+		behavior: '',
+		thing: '',
+		language: ''
+	}
+
 	const [input, setInput] = useState({
 		recipient: "Felicia",
 		sender: "Your Best Friend",
