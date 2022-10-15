@@ -7,7 +7,7 @@ import axios from "axios";
 import { duckReplacement } from "../utilities/duckReplacement";
 import Messages from "./Messages";
 
-export default function UserInput({ message }) {
+export default function UserInput() {
 	const [input, setInput] = useState({
 		recipient: "Felicia",
 		sender: "Your Best Friend",
@@ -20,29 +20,29 @@ export default function UserInput({ message }) {
 
 	const handleChangeMsg = (event) => {
 		setSelectedMsg(event.target.value);
-		console.log(selectedMsg)
+		console.log(selectedMsg);
 		event.preventDefault();
 	};
 
 	const handleChangeRecipient = (event) => {
-		setInput({ 
+		setInput({
 			recipient: event.target.value,
-			sender: input.sender 
+			sender: input.sender,
 		});
 		event.preventDefault();
 	};
 
 	const handleChangeSender = (event) => {
-		setInput({ 
+		setInput({
 			recipient: input.recipient,
-			sender: event.target.value 
+			sender: event.target.value,
 		});
 		event.preventDefault();
 	};
 
 	useEffect(() => {
 		let path = `https://foaas.com${selectedMsg}`;
-		console.log(path)
+		console.log(path);
 		path = customizePath(path, input.sender, input.recipient);
 		axios
 			.get(path, {
@@ -56,48 +56,46 @@ export default function UserInput({ message }) {
 					from: input.sender,
 				});
 			});
-	}, [message, input.recipient, input.sender, selectedMsg]);
+	}, [input.recipient, input.sender, selectedMsg]);
 
 	return (
-		<Form.Group>
-			<Row>
-				<h4>Customize It:</h4>
-			</Row>
-			<Row>
-				<Messages onChange={handleChangeMsg}/>
-			</Row>
-			<Row>
-				<h4>Personalize It:</h4>
-			</Row>
-			<Form.Group as={Row}>
-				<Form.Label column htmlFor="nameInput">
-					Type Your Recipient's Name here:
-				</Form.Label>
-				<Form.Control
-					column
-					type="text"
-					placeholder="Recipient's Name"
-					id="nameInput"
-					onChange={handleChangeRecipient}
-				></Form.Control>
+		<Form>
+			<Form.Group>
+				<Row>
+					<h4>Select a Message:</h4>
+				</Row>
+				<Row>
+					<Messages onChange={handleChangeMsg} />
+				</Row>
+				<Row>
+					<h4>Personalize It:</h4>
+				</Row>
+				<Form.Group as={Row}>
+					<Form.Label htmlFor="nameInput">
+						Type Your Recipient's Name here:
+					</Form.Label>
+					<Form.Control
+						type="text"
+						placeholder="Recipient's Name"
+						id="nameInput"
+						onChange={handleChangeRecipient}
+					></Form.Control>
+				</Form.Group>
+				<Form.Group as={Row}>
+					<Form.Label htmlFor="senderInput">Type Your Name here:</Form.Label>
+					<Form.Control
+						type="text"
+						placeholder="Your Name"
+						id="senderInput"
+						onChange={handleChangeSender}
+					></Form.Control>
+				</Form.Group>
+				<Form.Group as={Row}>
+					<div>
+						<ResultCard customMessage={customMessage} />
+					</div>
+				</Form.Group>
 			</Form.Group>
-			<Form.Group as={Row}>
-				<Form.Label column htmlFor="senderInput">
-					Type Your Name here:
-				</Form.Label>
-				<Form.Control
-					column
-					type="text"
-					placeholder="Your Name"
-					id="senderInput"
-					onChange={handleChangeSender}
-				></Form.Control>
-			</Form.Group>
-			<Form.Group as={Row}>
-				<div>
-					<ResultCard customMessage={customMessage} />
-				</div>
-			</Form.Group>
-		</Form.Group>
+		</Form>
 	);
 }

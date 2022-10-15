@@ -19,7 +19,7 @@ export default function Messages({ onChange }) {
 		<Form.Group id="msgMenu">
 			<Form.Label htmlFor="selectedMsg">Select a message here:</Form.Label>
 			<Row>
-				<select column id="messages" onChange={onChange}>
+				<select id="messages" onChange={onChange}>
 					{messages.map((msg) => (
 						<Message
 							message={msg}
