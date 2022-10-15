@@ -2,7 +2,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-export default function Header() {
+export default function NavBar() {
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="light" variant="light">
 			<Navbar.Brand href="/" id="navTitle">

@@ -5,22 +5,24 @@ import ResultCard from "./ResultCard";
 import { customizePath } from "../utilities/customizePath";
 import axios from "axios";
 import { duckReplacement } from "../utilities/duckReplacement";
-import Messages from "./Messages";
+import InputTextBox from "./InputTextBox";
+import InputSectionHeader from "./InputSectionHeader";
+import MessagesDropDown from "./MessagesDropDown";
 
 export default function UserInput() {
 	let messageInfo = {
-		recipient: '',
-		sender: '',
-		company: '',
-		tool: '',
-		do: '',
-		something: '',
-		noun: '',
-		reaction: '',
-		behavior: '',
-		thing: '',
-		language: ''
-	}
+		recipient: "",
+		sender: "",
+		company: "",
+		tool: "",
+		do: "",
+		something: "",
+		noun: "",
+		reaction: "",
+		behavior: "",
+		thing: "",
+		language: "",
+	};
 
 	const [input, setInput] = useState({
 		recipient: "Felicia",
@@ -69,38 +71,35 @@ export default function UserInput() {
 			});
 	}, [input.recipient, input.sender, selectedMsg]);
 
+	const recipientInput = {
+		label: "Type Your Recipient's Name here:",
+		placeholder: "Recipient's Name",
+		id: "nameInput",
+	};
+	const senderInput = {
+		label: "Type Your Name here:",
+		placeholder: "Your Name",
+		id: "senderInput",
+	};
+
 	return (
 		<Form>
 			<Form.Group>
-				<Row>
-					<h4>Select a Message:</h4>
-				</Row>
-				<Row>
-					<Messages onChange={handleChangeMsg} />
-				</Row>
-				<Row>
-					<h4>Personalize It:</h4>
-				</Row>
-				<Form.Group as={Row}>
-					<Form.Label htmlFor="nameInput">
-						Type Your Recipient's Name here:
-					</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Recipient's Name"
-						id="nameInput"
-						onChange={handleChangeRecipient}
-					></Form.Control>
-				</Form.Group>
-				<Form.Group as={Row}>
-					<Form.Label htmlFor="senderInput">Type Your Name here:</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Your Name"
-						id="senderInput"
-						onChange={handleChangeSender}
-					></Form.Control>
-				</Form.Group>
+				<InputSectionHeader text="Select a Message:" />
+				<MessagesDropDown onChange={handleChangeMsg} />
+				<InputSectionHeader text="Personalize It:" />
+				<InputTextBox
+					label={recipientInput.label}
+					placeholder={recipientInput.placeholder}
+					id={recipientInput.id}
+					onChange={handleChangeRecipient}
+				/>
+				<InputTextBox
+					label={senderInput.label}
+					placeholder={senderInput.placeholder}
+					id={senderInput.id}
+					onChange={handleChangeSender}
+				/>
 				<Form.Group as={Row}>
 					<div>
 						<ResultCard customMessage={customMessage} />
