@@ -20,7 +20,6 @@ export default function UserInput() {
 
 	const handleChangeMsg = (event) => {
 		setSelectedMsg(event.target.value);
-		console.log(selectedMsg);
 		event.preventDefault();
 	};
 
@@ -42,7 +41,6 @@ export default function UserInput() {
 
 	useEffect(() => {
 		let path = `https://foaas.com${selectedMsg}`;
-		console.log(path);
 		path = customizePath(path, input.sender, input.recipient);
 		axios
 			.get(path, {
