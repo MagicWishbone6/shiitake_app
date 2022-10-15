@@ -1,4 +1,5 @@
-export function customizePath(path, sender, recipient) {
+export function customizePath(selectedMsg, sender, recipient) {
+	let path = `https://foaas.com${selectedMsg}`
 	if (path.indexOf("name") > -1) {
 		path = path.replace(":name", recipient);
 	}

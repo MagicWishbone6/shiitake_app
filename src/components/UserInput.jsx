@@ -40,8 +40,7 @@ export default function UserInput() {
 	};
 
 	useEffect(() => {
-		let path = `https://foaas.com${selectedMsg}`;
-		path = customizePath(path, input.sender, input.recipient);
+		const path = customizePath(selectedMsg, input.sender, input.recipient);
 		axios
 			.get(path, {
 				headers: {
