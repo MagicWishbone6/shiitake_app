@@ -10,19 +10,19 @@ import InputSectionHeader from "./InputSectionHeader";
 import MessagesDropDown from "./MessagesDropDown";
 
 export default function UserInput() {
-	let messageInfo = {
-		recipient: "",
-		sender: "",
-		company: "",
-		tool: "",
-		do: "",
-		something: "",
-		noun: "",
-		reaction: "",
-		behavior: "",
-		thing: "",
-		language: "",
-	};
+	// let messageInfo = {
+	// 	recipient: "",
+	// 	sender: "",
+	// 	company: "",
+	// 	tool: "",
+	// 	do: "",
+	// 	something: "",
+	// 	noun: "",
+	// 	reaction: "",
+	// 	behavior: "",
+	// 	thing: "",
+	// 	language: "",
+	// };
 
 	const [input, setInput] = useState({
 		recipient: "Felicia",
